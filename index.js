@@ -19,10 +19,11 @@ while (loop) {
             removerTarefa(pesquisarTarefaTitulo())
             break;
         case 4:
-            exibirTarefas()
+            editarTarefa(pesquisarTarefaTitulo())
             break;
         case 5:
-            editarTarefa(pesquisarTarefaTitulo())
+            const exibir = parseInt(prompt(`\n 1 - Exibir lista tarefas disponiveis\n 2 - Exibir tarefas concluídas\n Digite : `))
+            exibir === 1 ? exibirTarefas() : exibirTarefasConcluidas()
             break;
         case 6:
             const escolha = parseInt(prompt(`\n 1 - Pesquisar por Título\n 2 - Pesquisar por Descrição\n Digite : `))

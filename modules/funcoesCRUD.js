@@ -1,6 +1,5 @@
 import { listaTarefas } from "./listaTarefas"
 import { listaTarefasConc } from "./listaTarefas"
-import { pesquisarTarefaTitulo } from "./funcoesPesquisa"
 
 export function criarTarefa() {
   let titulo = prompt("Título da tarefa (obrigatório) : ")
@@ -15,11 +14,8 @@ export function criarTarefa() {
   }
   // Obrigatoriedade de Prioridade
   while(typeof prioridade != typeof "string"){
-    prioridade = parseInt(
-      prompt(
-        "Escolha a prioridade da tarefa (obrigatório) :\n 1 - Baixa\n 2 - Média\n 3 - Alta\n Digite : "
-      )
-    )
+    prioridade = parseInt(prompt("Escolha a prioridade da tarefa (obrigatório) :\n 1 - Baixa\n 2 - Média\n 3 - Alta\n Digite : "))
+    
     switch(prioridade){
       case 1:
         prioridade = "Baixa"
@@ -34,6 +30,7 @@ export function criarTarefa() {
         console.log("Opção inválida! Tente uma das opções")
     }
   }
+  
   descricao === null ? descricao = "" : descricao = descricao
 
   let tarefa = {titulo, descricao, vencimento, prioridade }
@@ -81,11 +78,15 @@ export function editarTarefa(tarefa){
     const resposta = parseInt(prompt(`Deseja alterar ${propiedade} ?\n 1 - Sim\n 2 - Não`))
     if(resposta === 1){
       tarefa[propiedade] = prompt(`Edite o campo ${propiedade} : `)
+      while(tarefa[propiedade] === null){
+        if(propiedade == 'descricao'){
+          tarefa[propiedade] = ''
+        } else {
+          tarefa[propiedade] = prompt(`Edite o campo ${propiedade} : `)
+        }
+      }
     } else {
       console.log(`Campo ${propiedade} não alterado.`)
     }
   }
 }
-
-const teste = {titulo : 'Aba', vencimento : 2020}
-editarTarefa(teste)
