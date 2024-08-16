@@ -75,3 +75,17 @@ export function marcarTarefa() {
     console.log(`${opcao} não foi encontrado na lista de tarefas.`)
   }
 }
+
+export function editarTarefa(tarefa){
+  for(let propiedade in tarefa){
+    const resposta = parseInt(prompt(`Deseja alterar ${propiedade} ?\n 1 - Sim\n 2 - Não`))
+    if(resposta === 1){
+      tarefa[propiedade] = prompt(`Edite o campo ${propiedade} : `)
+    } else {
+      console.log(`Campo ${propiedade} não alterado.`)
+    }
+  }
+}
+
+const teste = {titulo : 'Aba', vencimento : 2020}
+editarTarefa(teste)

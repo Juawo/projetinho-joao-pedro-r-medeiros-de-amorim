@@ -1,4 +1,4 @@
-import { criarTarefa, adicionarTarefa,removerTarefa, marcarTarefa} from "./modules/funcoesIndex";
+import { criarTarefa, adicionarTarefa,removerTarefa, marcarTarefa, editarTarefa} from "./modules/funcoesCRUD";
 import { resumoTarefa, exibirTarefas, exibirTarefasConcluidas, filtrarTarefas, ordenarTarefas } from "./modules/funcoesExibir";
 import { pesquisarTarefaDescricao, pesquisarTarefaTitulo } from "./modules/funcoesPesquisa";
 import { exibirMenu } from "./modules/menu";
@@ -22,7 +22,7 @@ while (loop) {
             exibirTarefas()
             break;
         case 5:
-            exibirTarefasConcluidas()
+            editarTarefa(pesquisarTarefaTitulo())
             break;
         case 6:
             const escolha = parseInt(prompt(`\n 1 - Pesquisar por Título\n 2 - Pesquisar por Descrição\n Digite : `))
