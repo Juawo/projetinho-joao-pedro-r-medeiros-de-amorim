@@ -79,7 +79,11 @@ export function editarTarefa(tarefa){
   for(let propiedade in tarefa){
     const resposta = parseInt(prompt(`Deseja alterar ${propiedade} ?\n 1 - Sim\n 2 - Não`))
     if(resposta === 1){
-      tarefa[propiedade] = prompt(`Edite o campo ${propiedade} : `)
+      if(propiedade != 'vencimento' && propiedade != 'dataCreate'){
+        tarefa[propiedade] = prompt(`Edite o campo ${propiedade} : `)
+      } else if (propiedade == 'vencimento'){
+        tarefa[propiedade] = criarData()
+      }
       while(tarefa[propiedade] === null){
         if(propiedade == 'descricao'){
           tarefa[propiedade] = ''

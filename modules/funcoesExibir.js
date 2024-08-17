@@ -2,18 +2,28 @@ import { listaTarefas } from "./listaTarefas"
 import { listaTarefasConc } from "./listaTarefas"
 
 export function resumoTarefa() {
+  if(listaTarefas.length > 0){
     console.log(`      Próxima tarefa a concluir : ${listaTarefas[0].titulo}
       Número de tarefas pendentes : ${listaTarefas.length}
       Número de tarefas concluídas : ${listaTarefasConc.length}
       Número total de tarefas : ${listaTarefas.length + listaTarefasConc.length}`)
+    
+  } else {
+    console.log(`      Próxima tarefa a concluir : Não há tarefas!
+      Número de tarefas pendentes : ${listaTarefas.length}
+      Número de tarefas concluídas : ${listaTarefasConc.length}
+      Número total de tarefas : ${listaTarefas.length + listaTarefasConc.length}`)
+  }
 }
   
 export function exibirTarefas(lista = listaTarefas, exibirTudo = true){
       console.log(` --- Lista de Tarefas --- \n`)
       for (let tarefa of lista){
+      const dataVencimento = tarefa.vencimento 
+      const dataBrasil = dataVencimento.toLocaleDateString("pt-BR")
       console.log(`\u2610 Título : ${tarefa.titulo}
         Prioridade : ${tarefa.prioridade}
-        Vencimento : ${tarefa.vencimento}
+        Vencimento : ${dataBrasil}
         Descrição : ${tarefa.descricao}\n`)
     }
     if(exibirTudo){
@@ -24,9 +34,11 @@ export function exibirTarefas(lista = listaTarefas, exibirTudo = true){
 export function exibirTarefasConcluidas(){
       console.log(` --- Lista de Tarefas Concluídas --- \n`)
       for (let tarefa of listaTarefasConc){
-      console.log(`\u2611 ${tarefa.titulo}
+        const dataVencimento = tarefa.vencimento 
+        const dataBrasil = dataVencimento.toLocaleDateString("pt-BR")
+        console.log(`\u2611 ${tarefa.titulo}
         Prioridade : ${tarefa.prioridade}
-        Vencimento : ${tarefa.vencimento}
+        Vencimento : ${dataBrasil}
         Descrição : ${tarefa.descricao}\n`)
       }
 }

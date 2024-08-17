@@ -1,5 +1,18 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/xIJyaq6w)
-# Gerenciador de Tarefas - Trabalho em Construção
+# Gerenciador de Tarefas  ![JavaScript Badge](https://img.shields.io/badge/JavaScript-ES6-gree)
+
+## Sumário
+- [Descrição Geral](#descrição-geral)
+- [Funcionalidades Principais](#funcionalidades-principais)
+  - [Adicionar Nova Tarefa](#1-adicionar-nova-tarefa)
+  - [Listar Tarefas](#2-listar-tarefas)
+  - [Editar Tarefa](#3-editar-tarefa)
+  - [Remover Tarefa](#4-remover-tarefa)
+  - [Marcar Tarefa como Concluída](#5-marcar-tarefa-como-concluída)
+  - [Pesquisar Tarefas](#6-pesquisar-tarefas)
+  - [Resumo das Tarefas](#7-resumo-das-tarefas)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Autor](#autor)
 
 ## Descrição Geral
 
@@ -55,7 +68,7 @@ Todos os campos editados devem seguir as mesmas regras de validação da criaç�
 Permite ao usuário excluir uma tarefa da lista.
 
 **Confirmação:**  
-O sistema deve pedir confirmação antes de remover a tarefa.
+O sistema pede confirmação antes de remover a tarefa.
 
 ### 5. Marcar Tarefa como Concluída
 
@@ -63,7 +76,7 @@ O sistema deve pedir confirmação antes de remover a tarefa.
 Permite ao usuário marcar uma tarefa como concluída.
 
 **Visualização:**  
-Tarefas concluídas devem ser exibidas de forma diferente (ex.: riscadas ou com um ícone de check).
+Tarefas concluídas são exibidas de forma diferente (ex.: riscadas ou com um ícone de check).
 
 ### 6. Pesquisar Tarefas
 
@@ -71,7 +84,7 @@ Tarefas concluídas devem ser exibidas de forma diferente (ex.: riscadas ou com 
 Permite ao usuário buscar tarefas por título ou descrição.
 
 **Funcionalidade de Busca:**  
-Deve ser sensível a maiúsculas e minúsculas, e permitir a busca parcial.
+É sensível a maiúsculas e minúsculas, e permite a busca parcial.
 
 ### 7. Resumo das Tarefas
 
@@ -83,3 +96,14 @@ Exibe um resumo das tarefas do usuário.
 - Número de tarefas pendentes.
 - Número de tarefas concluídas.
 - Próxima tarefa a vencer.
+
+## Tecnologias Utilizadas
+
+- **Linguagem:** JavaScript (ES6)
+- **Frameworks:** Nenhum
+- **Outras Tecnologias:** Git,Github e ChatGPT
+
+## Autor
+
+Desenvolvido por João Pedro Ruidivalle Medeiros de Amorim.  
+[![GitHub Profile](https://img.shields.io/badge/GitHub-Profile-informational?logo=github)](https://github.com/Juawo)
