@@ -8,13 +8,16 @@ export function resumoTarefa() {
       Número total de tarefas : ${listaTarefas.length + listaTarefasConc.length}`)
 }
   
-export function exibirTarefas(lista = listaTarefas){
+export function exibirTarefas(lista = listaTarefas, exibirTudo = true){
       console.log(` --- Lista de Tarefas --- \n`)
       for (let tarefa of lista){
       console.log(`\u2610 Título : ${tarefa.titulo}
         Prioridade : ${tarefa.prioridade}
         Vencimento : ${tarefa.vencimento}
         Descrição : ${tarefa.descricao}\n`)
+    }
+    if(exibirTudo){
+      exibirTarefasConcluidas()
     }
   }
   
@@ -28,7 +31,7 @@ export function exibirTarefasConcluidas(){
       }
 }
   
-export function filtrarTarefas(){
+export function filtrarTarefasPrioridade(){
     const opcao = parseInt(prompt("Filtrar por prioridade :\n 1 - Baixa\n 2 - Média\n 3 - Alta\n Digite : "))
     switch(opcao){
       case 1:
@@ -50,14 +53,32 @@ export function filtrarTarefas(){
         console.log("Opção inválida!")
     }
 }
-  
-export function ordenarTarefas(lista = listaTarefas){
+
+export function filtrarTarefasData(){
+  return
+}
+
+export function filtrarTarefasVencimento(){
+  return
+}
+
+export function ordenarTarefasPrioridade(){
   listaTarefas.sort((tarefa1,tarefa2) => {
     const prioridades = ['Baixa','Média','Alta']
     return prioridades.indexOf(tarefa2.prioridade) - prioridades.indexOf(tarefa1.prioridade)
   })
   console.log("Lista ordenada!")
+  return listaTarefas
+}
+
+export function ordenarTarefasVencimento(lista = listaTarefas){
+  lista.sort((tarefa1,tarefa2) => tarefa2.vencimento - tarefa1.vencimento)
+  console.log("Lista ordenada!")
   return lista
 }
 
-
+export function ordenarTarefasData(lista = listaTarefas){
+  lista.sort((tarefa1,tarefa2) => tarefa1.dataCreate - tarefa2.dataCreate)
+  console.log("Lista ordenada!")
+  return lista
+}

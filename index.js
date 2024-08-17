@@ -1,5 +1,5 @@
 import { criarTarefa, adicionarTarefa,removerTarefa, marcarTarefa, editarTarefa} from "./modules/funcoesCRUD";
-import { resumoTarefa, exibirTarefas, exibirTarefasConcluidas, filtrarTarefas, ordenarTarefas } from "./modules/funcoesExibir";
+import { resumoTarefa, exibirTarefas, exibirTarefasConcluidas, filtrarTarefasPrioridade, ordenarTarefasPrioridade, ordenarTarefasVencimento, ordenarTarefasData } from "./modules/funcoesExibir";
 import { pesquisarTarefaDescricao, pesquisarTarefaTitulo } from "./modules/funcoesPesquisa";
 import { exibirMenu } from "./modules/menu";
 
@@ -31,10 +31,18 @@ while (loop) {
             escolha === 1 ? pesquisarTarefaTitulo(true) : pesquisarTarefaDescricao()
             break;
         case 7:
-            filtrarTarefas()
+            const filtrar = parseInt(prompt(` 1 - Filtrar por Prioriade\n 2 - Filtrar por Vencimento\n 3 - Filtrar por Data de Criação\n Digite : `))
+            filtrar === 1 && filtrarTarefasPrioridade()
+            filtrar === 2 && filtrarTarefasVencimento()
+            filtrar === 3 && filtrarTarefasData()
+            exibirTarefas()
             break;
         case 8:
-            ordenarTarefas()
+            const ordenar = parseInt(prompt(` 1 - Ordenar por Prioriade\n 2 - Ordenar por Vencimento\n 3 - Ordenar por Data de Criação\n Digite : `))
+            ordenar === 1 && ordenarTarefasPrioridade()
+            ordenar === 2 && ordenarTarefasVencimento()
+            ordenar === 3 && ordenarTarefasData()
+            exibirTarefas()
             break;
         case 9:
             resumoTarefa()

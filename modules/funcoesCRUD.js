@@ -4,13 +4,15 @@ import { listaTarefasConc } from "./listaTarefas"
 export function criarTarefa() {
   let titulo = prompt("Título da tarefa (obrigatório) : ")
   let descricao = prompt("Descrição da tarefa (opcional) : ")
-  let vencimento = prompt("Vencimento da tarefa (obrigatório) : ")
+  let vencimento = criarData()
   let prioridade = null
+  let dataCreate = new Date()
+  dataCreate.toDateString()
   // Obrigatoriedade de Título e Vencimento 
   while (titulo === null || vencimento === null) {
     console.log("Preencha todos os campos obrigatórios!\n")
     titulo === null && (titulo = prompt("Título da tarefa : "))
-    vencimento === null && (vencimento = prompt("Vencimento da tarefa : "))
+    vencimento === null && (vencimento = criarData())
   }
   // Obrigatoriedade de Prioridade
   while(typeof prioridade != typeof "string"){
@@ -33,7 +35,7 @@ export function criarTarefa() {
   
   descricao === null ? descricao = "" : descricao = descricao
 
-  let tarefa = {titulo, descricao, vencimento, prioridade }
+  let tarefa = {titulo, descricao, vencimento, prioridade, dataCreate}
   return tarefa
 }
 
@@ -65,7 +67,7 @@ export function marcarTarefa() {
   const opcao = prompt(`Qual tarefa marcar como concluída : `)
   const index = listaTarefas.findIndex((t) => t.titulo === opcao)
   if (index != -1) {
-      console.log(`Tarefa ${listaTarefas[index].titulo} marcada como concluída!`)
+    console.log(`Tarefa ${listaTarefas[index].titulo} marcada como concluída!`)
     listaTarefasConc.push(listaTarefas[index])
     listaTarefas.splice(index,1)
   } else {
@@ -89,4 +91,23 @@ export function editarTarefa(tarefa){
       console.log(`Campo ${propiedade} não alterado.`)
     }
   }
+}
+
+export function criarData(){
+let data = prompt("Digite uma data no formato DD/MM/AAAA").split("/")
+let dia = parseInt(data[0])
+let mes = parseInt(data[1])
+let ano = parseInt(data[2])
+
+let dataCompleta = new Date(ano,mes - 1,dia)
+
+while(dataCompleta == "Invalid Date" || data === null){
+  console.log("Digite uma data válida!")
+  data = prompt("Digite uma data no formato DD/MM/AAAA").split("/")
+  dia = parseInt(data[0])
+  mes = parseInt(data[1])
+  ano = parseInt(data[2])
+  dataCompleta = new Date(ano,mes - 1,dia)
+}
+return dataCompleta
 }
