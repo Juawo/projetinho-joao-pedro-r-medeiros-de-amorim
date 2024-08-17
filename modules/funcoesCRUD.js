@@ -7,7 +7,7 @@ export function criarTarefa() {
   let vencimento = criarData()
   let prioridade = null
   let dataCreate = new Date()
-  dataCreate.toDateString()
+
   // Obrigatoriedade de Título e Vencimento 
   while (titulo === null || vencimento === null) {
     console.log("Preencha todos os campos obrigatórios!\n")

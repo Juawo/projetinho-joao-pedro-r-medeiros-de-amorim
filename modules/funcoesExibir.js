@@ -30,36 +30,66 @@ export function exibirTarefasConcluidas(){
         Descrição : ${tarefa.descricao}\n`)
       }
 }
-  
+
 export function filtrarTarefasPrioridade(){
     const opcao = parseInt(prompt("Filtrar por prioridade :\n 1 - Baixa\n 2 - Média\n 3 - Alta\n Digite : "))
     switch(opcao){
       case 1:
         const tarefasBaixaPrioridade = listaTarefas.filter((tarefa) => tarefa.prioridade === "Baixa")
         console.log(`\n --- Tarefas com prioridade Baixa --- \n`)
-        exibirTarefas(tarefasBaixaPrioridade)
+        exibirTarefas(tarefasBaixaPrioridade,false)
         break;
       case 2:
         const tarefasMediaPrioridade = listaTarefas.filter((tarefa) => tarefa.prioridade === "Média")
         console.log(`\n --- Tarefas com prioridade Média --- \n`)
-        exibirTarefas(tarefasMediaPrioridade)
+        exibirTarefas(tarefasMediaPrioridade,false)
         break;
       case 3:
         const tarefasAltaPrioridade = listaTarefas.filter((tarefa) => tarefa.prioridade === "Alta")
         console.log(`\n --- Tarefas com prioridade Alta --- \n`)
-        exibirTarefas(tarefasAltaPrioridade)
+        exibirTarefas(tarefasAltaPrioridade,false)
         break;
       default:
         console.log("Opção inválida!")
     }
 }
 
-export function filtrarTarefasData(){
-  return
-}
+export function filtrarTarefasVencimento(vencidas,vencemHoje,vencemFuturo){
+  const dataAtual = new Date()
+  
+  const tarefasVencidas = []
+  const tarefasVencidasHoje = []
+  const tarefasVencidasFuturo = []
 
-export function filtrarTarefasVencimento(){
-  return
+  listaTarefas.forEach(tarefa => {
+    const dataVencimento = tarefa.vencimento
+
+    dataVencimento.setHours(0,0,0,0)
+    dataAtual.setHours(0,0,0,0)
+
+    if(dataVencimento < dataAtual){
+      tarefasVencidas.push(tarefa)
+    } else if (dataVencimento.getTime() === dataAtual.getTime()){
+      tarefasVencidasHoje.push(tarefa)
+    } else {
+      tarefasVencidasFuturo.push(tarefa)
+    }
+  })
+
+  if(vencidas){
+    console.log(`\n --- Tarefas Vencidas --- \n`)
+    exibirTarefas(tarefasVencidas,false)
+  }
+
+  if(vencemHoje){
+    console.log(`\n --- Tarefas Vencidas Hoje --- \n`)
+    exibirTarefas(tarefasVencidasHoje,false)
+  }
+
+  if(vencemFuturo){
+    console.log(`\n --- Tarefas Vencidas Futuro --- \n`)
+    exibirTarefas(tarefasVencidasFuturo,false)
+  }
 }
 
 export function ordenarTarefasPrioridade(){
