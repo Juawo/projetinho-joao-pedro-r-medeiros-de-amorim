@@ -76,13 +76,32 @@ export function marcarTarefa() {
 }
 
 export function editarTarefa(tarefa){
+  let resposta = null
   for(let propiedade in tarefa){
-    const resposta = parseInt(prompt(`Deseja alterar ${propiedade} ?\n 1 - Sim\n 2 - Não`))
+    if(propiedade != 'dataCreate'){
+      resposta = parseInt(prompt(`Deseja alterar ${propiedade} ?\n 1 - Sim\n 2 - Não\n Digite : `))
+    }
     if(resposta === 1){
-      if(propiedade != 'vencimento' && propiedade != 'dataCreate'){
+      if(propiedade != 'vencimento' && propiedade != 'dataCreate' && propiedade != 'prioridade'){
         tarefa[propiedade] = prompt(`Edite o campo ${propiedade} : `)
       } else if (propiedade == 'vencimento'){
         tarefa[propiedade] = criarData()
+      } else if(propiedade == 'prioridade'){
+        tarefa[propiedade] = parseInt(prompt("Escolha a prioridade da tarefa (obrigatório) :\n 1 - Baixa\n 2 - Média\n 3 - Alta\n Digite : "))
+        
+        switch(tarefa[propiedade]){
+          case 1:
+            tarefa[propiedade] = "Baixa"
+            break;
+          case 2:
+            tarefa[propiedade] = "Média"
+            break;
+          case 3:
+            tarefa[propiedade] = "Alta"
+            break;
+          default :
+            console.log("Opção inválida! Tente uma das opções")
+        }
       }
       while(tarefa[propiedade] === null){
         if(propiedade == 'descricao'){
@@ -98,20 +117,34 @@ export function editarTarefa(tarefa){
 }
 
 export function criarData(){
-let data = prompt("Digite uma data no formato DD/MM/AAAA").split("/")
-let dia = parseInt(data[0])
-let mes = parseInt(data[1])
-let ano = parseInt(data[2])
+  let data = prompt("Digite uma data no formato DD/MM/AAAA (obrigatório) : ")
+  while(data === null || data === "" ){
+    data = prompt("Digite uma data no formato DD/MM/AAAA (obrigatório) : ")
+  }
+  let dia = null
+  let mes = null
+  let ano = null
+  let dataCompleta = null
 
-let dataCompleta = new Date(ano,mes - 1,dia)
-
-while(dataCompleta == "Invalid Date" || data === null){
-  console.log("Digite uma data válida!")
-  data = prompt("Digite uma data no formato DD/MM/AAAA").split("/")
+  data = data.split("/")
   dia = parseInt(data[0])
   mes = parseInt(data[1])
   ano = parseInt(data[2])
+
   dataCompleta = new Date(ano,mes - 1,dia)
-}
-return dataCompleta
+    
+  while(dataCompleta == "Invalid Date"){
+      console.log("Digite uma data válida!", data)
+      data = prompt("Digite uma data no formato DD/MM/AAAA (obrigratório) : ")
+      while(data === null || data === "" ){
+        data = prompt("Digite uma data no formato DD/MM/AAAA (obrigatório) : ")
+      }
+      data = data.split("/")
+      dia = parseInt(data[0])
+      mes = parseInt(data[1])
+      ano = parseInt(data[2])
+      dataCompleta = new Date(ano,mes - 1,dia)
+  }
+  return dataCompleta
+
 }
